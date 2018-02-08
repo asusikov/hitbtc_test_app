@@ -1,12 +1,17 @@
 - if @currencies.empty?
   h1 There are not any information about currencies
 - else
-  - for row in @currencies.each_slice(3)
+  - for row in @currencies.each_slice(2)
     .row
       - for currency in row
-        .col.s4
+        .col.s6
           .card
             .card-content
               span.card-title
                 strong = currency.title
                 | &nbsp; #{currency.full_name}
+
+              - for pair in currency.pairs
+               - if pair.last_ticker.present?
+                .ticker
+                  | #{pair.last_ticker.bid} #{pair.quote_currency.title}

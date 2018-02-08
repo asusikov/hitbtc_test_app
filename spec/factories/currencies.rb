@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :currency do
-    title "MyString"
+    title 'BTC'
   end
 end
