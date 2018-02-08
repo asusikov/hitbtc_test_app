@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :currency do
-    pair "MyString"
+    title "MyString"
   end
 end

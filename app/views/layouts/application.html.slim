@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Icobox Test App
+    == csrf_meta_tags
+
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    nav.blue-grey
+      .nav-wrapper
+        .container
+          .brand-logo Icobox Test App
+    .main.container
+      == yield
