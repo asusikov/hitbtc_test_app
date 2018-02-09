@@ -12,6 +12,6 @@
                 | &nbsp; #{currency.full_name}
 
               - for pair in currency.pairs
-               - if pair.last_ticker.present?
-                .ticker
-                  | #{pair.last_ticker.bid} #{pair.quote_currency.title}
+                - if pair.last_ticker.present?
+                  .ticker
+                    | #{pair.last_ticker.bid} #{pair.quote_currency.title}
