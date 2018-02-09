@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 gem "slim-rails"
 gem 'materialize-sass', git: 'https://github.com/mkhairi/materialize-sass', :branch => 'v0.100'
 
+gem 'httparty'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

@@ -17,23 +17,15 @@ Currency.create! title: 'LTC', full_name: 'Litecoin'
 Currency.create! title: 'EOS', full_name: 'EOS'
 Currency.create! title: 'BCH', full_name: 'Bitcoin Cash'
 Currency.create! title: 'NEO', full_name: 'NEO'
-Currency.create! title: 'IOTA', full_name: 'Iota'
 Currency.create! title: 'ETC', full_name: 'Ethereum Classic'
 Currency.create! title: 'DASH', full_name: 'Dash'
 Currency.create! title: 'ZEC', full_name: 'Zcash'
 Currency.create! title: 'XMR', full_name: 'Monero'
 Currency.create! title: 'OMG', full_name: 'OmiseGO'
-Currency.create! title: 'ELF', full_name: 'aelf'
 Currency.create! title: 'BTG', full_name: 'Bitcoin Gold'
+Currency.create! title: 'SAN', full_name: 'Santiment'
+Currency.create! title: 'TRX', full_name: 'TRON'
 usd = Currency.create! title: 'USD', full_name: 'USD'
 
 
-Pair.create! base_currency: btc, quote_currency: eth
-Pair.create! base_currency: btc, quote_currency: usd
-Pair.create! base_currency: eth, quote_currency: xrp
-Pair.create! base_currency: eth, quote_currency: usd
-
-Ticker.create!(pair: Pair.first, bid: 4573)
-Ticker.create!(pair: Pair.second, bid: 5688)
-Ticker.create!(pair: Pair.third, bid: 325)
-Ticker.create!(pair: Pair.fourth, bid: 1948)
+HitbtcImporter.new.import_symbols
