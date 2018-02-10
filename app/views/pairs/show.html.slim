@@ -1,8 +1,9 @@
 div
-  | < #{@pair.base_currency.title} - #{@pair.quote_currency.title}
+  = link_to pairs_path
+    | Back to pairs
 .card
   .card-content
     span.card-title
-      | #{@pair.base_currency.title} - #{@pair.quote_currency.title}
+      = get_full_title_of_pair(@pair)
       = link_to 'Tickers', tickers_pair_path(@pair), { class: 'right' }
     h1 = @pair.last_ticker.bid

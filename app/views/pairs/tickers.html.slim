@@ -1,5 +1,8 @@
+div
+  = link_to @pair
+    | Back to #{get_full_title_of_pair(@pair)}
 - for ticker in @tickers
   .card
     .card-content
       .card-title
-        | #{ticker.timestamp} - #{ticker.bid}
+        | #{ticker.timestamp.strftime('%F %H:%M')} - #{ticker.bid}
