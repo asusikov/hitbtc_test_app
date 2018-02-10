@@ -9,6 +9,6 @@ class PairsController < ApplicationController
 
   def tickers
     @pair = Pair.find params[:id]
-    @tickers = @pair.tickers
+    @tickers = @pair.tickers.order(timestamp: :desc)
   end
 end
