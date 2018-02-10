@@ -13,5 +13,5 @@
 
               - for pair in currency.pairs
                 - if pair.last_ticker.present?
-                  .ticker
-                    | #{pair.last_ticker.bid} #{pair.quote_currency.title}
+                  div
+                    = link_to "#{pair.last_ticker.bid} #{pair.quote_currency.title}", pair, { class: "ticker" }

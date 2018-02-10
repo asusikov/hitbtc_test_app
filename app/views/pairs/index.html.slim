@@ -1,0 +1,7 @@
+- for pair in @pairs
+  .card
+    .card-content
+      .card-title
+        = link_to pair
+          | #{pair.base_currency.title} - #{pair.quote_currency.title}
+          span.right = pair.last_ticker.bid

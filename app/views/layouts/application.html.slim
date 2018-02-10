@@ -11,5 +11,8 @@ html
       .nav-wrapper
         .container
           .brand-logo Icobox Test App
+          ul.right
+            li = link_to 'Currencies', currencies_path
+            li = link_to 'Pairs', pairs_path
     .main.container
       == yield
