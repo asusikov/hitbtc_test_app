@@ -4,4 +4,5 @@
       .card-title
         = link_to pair
           = get_full_title_of_pair(pair)
-          span.right = pair.last_ticker.bid
+          - if pair.last_ticker.present?
+            span.right = pair.last_ticker.bid

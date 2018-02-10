@@ -5,5 +5,25 @@ div
   .card-content
     span.card-title
       = get_full_title_of_pair(@pair)
-      = link_to 'Tickers', tickers_pair_path(@pair), { class: 'right' }
-    h1 = @pair.last_ticker.bid
+      - if @pair.last_ticker.present?
+        = link_to 'Tickers', tickers_pair_path(@pair), { class: 'right' }
+    - if @pair.last_ticker.present?
+      h1 = @pair.last_ticker.bid
+      div
+        span
+          strong Open:
+        span.value = @pair.last_ticker.open
+      div
+        span
+          strong Low:
+        span.value = @pair.last_ticker.low
+      div
+        span
+          strong High:
+        span.value = @pair.last_ticker.high
+      div
+        span
+          strong Volume:
+        span.value = @pair.last_ticker.volume
+    - else
+      p We don't have any info about tickers

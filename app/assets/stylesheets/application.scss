@@ -4,6 +4,11 @@
   margin-top: 20px;
 }
 
-.card a {
-  color: black;
+.card {
+  a {
+    color: black;
+  }
+  span.value {
+    padding-left: 10px;
+  }
 }
