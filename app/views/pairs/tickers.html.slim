@@ -1,6 +1,36 @@
+javascript:
+  var full_title = '#{get_full_title_of_pair(@pair)}';
+  var x_column = ['x'];
+  Array.prototype.push.apply(x_column, #{raw @timestamps.to_json});
+  var bid_column = [full_title]
+  Array.prototype.push.apply(bid_column, #{raw @bids.to_json});
+  $(function() {
+    c3.generate({
+      bindto: '.chart',
+      data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M',
+        columns: [
+          x_column,
+          bid_column
+        ]
+      },
+      axis: {
+        x: {
+          type: 'timeseries',
+          tick: {
+            format: '%Y-%m-%d %H:%M'
+          }
+        }
+      }
+    });
+  });
+
 div
   = link_to @pair
     | Back to #{get_full_title_of_pair(@pair)}
+.card-panel
+  .chart
 - for ticker in @tickers
   .card
     .card-content

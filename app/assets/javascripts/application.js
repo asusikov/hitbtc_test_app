@@ -15,3 +15,6 @@
 //= require materialize
 //= require turbolinks
 //= require_tree .
+
+//= require c3
+//= require d3

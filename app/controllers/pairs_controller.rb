@@ -1,6 +1,8 @@
 class PairsController < ApplicationController
+
+  before_action :find_pair, only: [:show, :tickers]
+
   def show
-    @pair = Pair.find params[:id]
   end
 
   def index
@@ -8,7 +10,14 @@ class PairsController < ApplicationController
   end
 
   def tickers
-    @pair = Pair.find params[:id]
     @tickers = @pair.tickers.order(timestamp: :desc)
+    @timestamps = @tickers.map { |ticker| ticker.timestamp.strftime('%F %H:%M') }
+    @bids = @tickers.map { |ticker| ticker.bid }
+  end
+
+  private
+
+  def find_pair
+    @pair = Pair.find params[:id]
   end
 end
