@@ -3,6 +3,6 @@ FactoryBot.define do
     association :base_currency, factory: :currency
     association :quote_currency, factory: :currency
 
-    title 'USDBTC'
+    title 'USDBTC'    
   end
 end
