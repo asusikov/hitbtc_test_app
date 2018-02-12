@@ -11,6 +11,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - redis
   delayed_job:
     build: .
     command: rake jobs:work
@@ -18,3 +19,5 @@ services:
       - web
     volumes:
       - .:/usr/src/app
+  redis:
+    image: "redis:alpine"

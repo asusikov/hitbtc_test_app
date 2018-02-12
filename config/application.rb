@@ -7,6 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 require './lib/hitbtc_importer'
+require './lib/last_ticker_notificator'
 
 module App
   class Application < Rails::Application

@@ -5,7 +5,7 @@ javascript:
   var bid_column = [full_title]
   Array.prototype.push.apply(bid_column, #{raw @bids.to_json});
   $(function() {
-    c3.generate({
+    var chart = c3.generate({
       bindto: '.chart',
       data: {
         x: 'x',
@@ -24,6 +24,24 @@ javascript:
         }
       }
     });
+
+    App.cable.subscriptions.create({
+      channel: 'PairNotificationsChannel',
+      pair_id: #{raw @pair.id},
+    }, {
+      received: function(data) {
+        console.log(data);
+        $('.tickers').prepend(data.rendered_ticker);
+        Array.prototype.push.apply(x_column, [data.last_ticker.timestamp]);
+        Array.prototype.push.apply(bid_column, [data.last_ticker.bid]);
+        chart.load({
+          columns: [
+            x_column,
+            bid_column
+          ]
+        });
+      }
+    });
   });
 
 div
@@ -31,8 +49,6 @@ div
     | Back to #{get_full_title_of_pair(@pair)}
 .card-panel
   .chart
-- for ticker in @tickers
-  .card
-    .card-content
-      .card-title
-        | #{ticker.timestamp.strftime('%F %H:%M')} - #{ticker.bid}
+.tickers
+  - for ticker in @tickers
+    = render partial: 'pairs/tickers/ticker', locals: { ticker: ticker }

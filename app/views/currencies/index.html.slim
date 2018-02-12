@@ -1,3 +1,12 @@
+javascript:
+  App.cable.subscriptions.create("TickersNotificationsChannel", {
+    received: function(data) {
+      data.tickers.forEach(function(item) {
+        $(`a[data-pair-id="${item['pair_id']}"] .bid`).html(item['bid']);
+      });
+    }
+  });
+
 - if @currencies.empty?
   h1 There are not any information about currencies
 - else
@@ -14,4 +23,6 @@
               - for pair in currency.pairs
                 - if pair.last_ticker.present?
                   div
-                    = link_to "#{pair.last_ticker.bid} #{pair.quote_currency.title}", pair, { class: "ticker" }
+                    = link_to pair, { class: "ticker", 'data-pair-id': pair.id }
+                      span.bid = pair.last_ticker.bid
+                      |  #{pair.quote_currency.title}

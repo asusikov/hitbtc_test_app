@@ -1,3 +1,18 @@
+javascript:
+  App.cable.subscriptions.create({
+    channel: 'PairNotificationsChannel',
+    pair_id: #{raw @pair.id},
+  }, {
+    received: function(data) {
+      console.log(data);
+      $('.bid').html(data.last_ticker.bid);
+      $('.open .value').html(data.last_ticker.open);
+      $('.low .value').html(data.last_ticker.low);
+      $('.high .value').html(data.last_ticker.high);
+      $('.volume .value').html(data.last_ticker.volume);
+    }
+  });
+
 div
   = link_to pairs_path
     | Back to pairs
@@ -8,20 +23,20 @@ div
       - if @pair.last_ticker.present?
         = link_to 'Tickers', tickers_pair_path(@pair), { class: 'right' }
     - if @pair.last_ticker.present?
-      h1 = @pair.last_ticker.bid
-      div
+      h1.bid = @pair.last_ticker.bid
+      .open
         span
           strong Open:
         span.value = @pair.last_ticker.open
-      div
+      .low
         span
           strong Low:
         span.value = @pair.last_ticker.low
-      div
+      .high
         span
           strong High:
         span.value = @pair.last_ticker.high
-      div
+      .volume
         span
           strong Volume:
         span.value = @pair.last_ticker.volume
