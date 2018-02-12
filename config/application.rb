@@ -16,7 +16,7 @@ module App
     # -- all .rb files in that directory are automatically loaded.
     config.active_job.queue_adapter = :delayed_job
     config.after_initialize do
-      if Delayed::Job.all.count == 0
+      if ActiveRecord::Base.connection.tables.include?('delayed_jobs') && Delayed::Job.all.count == 0
         ImportTickersJob.perform_later
       end
     end
